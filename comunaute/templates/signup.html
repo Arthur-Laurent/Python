@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="index.html">Accueil</a></li>
+			<li class="active">Inscription</li>
+		</ol>
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-xs-12 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Inscription</h1>
+				</header>
+				
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+
+							{% if valider %}
+							<h3 class="thin text-center">Félicitation</h3>
+							<p class="text-center text-muted">Vous êtes maintenant inscrit.Vous pouvez vous connecter en cliquant ici.<a href="{% url 'connexion' %}">Connexion</a>  </p>
+
+							{% else %}
+							<h3 class="thin text-center">S'inscrire</h3>
+							<p class="text-center text-muted">Si vous posséder déjà un compte <a href="{% url 'connexion' %}">connectez vous.</a>  </p>
+							<hr>
+
+
+
+							<form method="post" action="{% url 'inscription' %}">
+									{% csrf_token %}
+								<div class="top-margin">
+									<label>Nom d'utilisateur : </label>
+									<input type="text" class="form-control" name="username" maxlength="150" minlength="6" required id="id_username">
+								</div>
+								<div class="top-margin">
+									<label>Prénom : </label>
+									<input type="text" class="form-control" name="prenom" maxlength="150" minlength="6" required id="id_prenom">
+								</div>
+																	{% csrf_token %}
+								<div class="top-margin">
+									<label>Nom : </label>
+									<input type="text" class="form-control" name="nom" maxlength="150" minlength="6" required id="id_nom">
+								</div>
+								<div class="row top-margin">
+									<div class="col-sm-6">
+										<label>Mot de passe : <span class="text-danger">*</span></label>
+										<input type="password" name="password" maxlength="150" minlength="6" required id="id_password" class="form-control">
+									</div>
+									<div class="col-sm-6">
+										<label>Confirmation mot de passe : <span class="text-danger">*</span></label>
+										<input type="password" name="password" maxlength="150" minlength="6" required id="id_password1" class="form-control">
+									</div>
+								</div>
+								<div class="top-margin">
+									<label>Adresse email : </label>
+									<input type="email" name="email" required id="id_email" class="form-control">
+								</div>
+								<div class="top-margin">
+									<label>Numero de telephone : </label>
+									<input type="number" name="telephone" maxlength="10" minlength="10" required id="id_telephone" class="form-control">
+								</div>
+								<div class="top-margin">
+									<p>
+										<label for="id_addresse">Addresse :</label> <input type="text" name="addresse"  class="address" required id="id_addresse">
+										<div id="addresse_components">
+											<input type="hidden" name="addresse_country" data-geo="country" value="" />
+											<input type="hidden" name="addresse_country_code" data-geo="country_short" value="" />
+											<input type="hidden" name="addresse_locality" data-geo="locality" value="" />
+											<input type="hidden" name="addresse_sublocality" data-geo="sublocality" value="" />
+											<input type="hidden" name="addresse_postal_code" data-geo="postal_code" value="" />
+											<input type="hidden" name="addresse_route" data-geo="route" value="" />
+											<input type="hidden" name="addresse_street_number" data-geo="street_number" value="" />
+											<input type="hidden" name="addresse_state" data-geo="administrative_area_level_1" value="" />
+											<input type="hidden" name="addresse_state_code" data-geo="administrative_area_level_1_short" value="" />
+											<input type="hidden" name="addresse_formatted" data-geo="formatted_address" value="" />
+											<input type="hidden" name="addresse_latitude" data-geo="lat" value="" />
+											<input type="hidden" name="addresse_longitude" data-geo="lng" value="" />
+										</div>
+									</p>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-lg-8">
+										<label class="checkbox">
+											<input type="checkbox">
+											J'ai lu les <a href="page_terms.html">Conditions d'utilisations</a>
+										</label>
+									</div>
+									<div class="col-lg-4 text-right">
+										<button class="btn btn-action" type="submit">S'inscrire</button>
+									</div>
+								</div>
+							</form>
+							{% endif %}
+						</div>
+					</div>
+
+				</div>
+				
+			</article>
+			<!-- /Article -->
+
+		</div>
+	</div>	<!-- /container -->
+	
+
+
+		
+{% endblock %}

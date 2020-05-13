@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+
+	<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="{% url 'accueil' %}">Accueil</a></li>
+			<li class="active">Demande</li>
+		</ol>
+
+		<div class="row">
+
+			<!-- Sidebar -->
+			<aside class="col-md-4 sidebar sidebar-left">
+
+				<div class="row widget">
+					<div class="col-xs-12">
+						<h4>Onglets demande</h4>
+						<p>Completer le formulaire pour finaliser votre demande.</p>
+					</div>
+				</div>
+				<div class="container">
+
+	</div>
+
+<br>
+<br>
+
+
+			</aside>
+			<!-- /Sidebar -->
+			<!-- Article main content -->
+			<article class="col-md-8 maincontent">
+				<div class="dropdown pull-right   show">
+  					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   					Panier
+  					</a>
+
+				  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					  {% for panier in paniers %}
+					<a class="dropdown-item" href="#">{{panier.produits.nom}}</a>
+					  {% endfor %}
+
+
+				  </div>
+			</div>
+
+
+				<h3>Sélectioner les produits dont vous avez besoin :</h3>
+
+
+
+				<div class="container -fluid">
+					{% for produit in produits %}
+				<div class="col-md-4 col-md-offset-0 col-sm-1 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="container-fluid">
+							<img src="{% static 'assets/images/masque.jpg' %}"  class="center-block" alt="erreur">
+							</div>
+							<div class="container">
+								<p class="text-center"  >{{produit.nom}}</p>
+							</div>
+														<div class="container">
+								<p class="text-center"  >Prix :{{produit.prix}} € </p>
+							</div>
+							<hr>
+							<form method="post" action="{% url 'demande' %}">
+									{% csrf_token %}
+
+						<div class="row">
+									<div class="col-6">
+										<div class="input-group mb-3">
+  											<input type="text" name="quantity" class="form-control" placeholder="Quantité"  aria-describedby="basic-addon2">
+											<input type="hidden" name="idproduit" value="{{produit.id}}" >
+											<input type="hidden" name="idcommande" value="{{idcommande}}" >
+										</div>
+									</div>
+									<div class="col-4">
+										<button type="submit" class="btn btn-outline-primary">Ajouter</button>
+									</div>
+						</div>
+
+								<hr>
+
+							</form>
+						</div>
+					</div>
+				</div>
+					{% endfor %}
+
+
+
+
+
+
+				<!--Light blue-->
+				</div>
+
+<button type="submit" class="btn btn-primary pull-right">Continuer</button>
+			</article>
+
+
+
+		</div>
+	</div>	<!-- /container -->
+
+
+{% endblock %}

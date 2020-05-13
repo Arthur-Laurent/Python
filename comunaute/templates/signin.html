@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="{% url 'accueil' %}">Accueil</a></li>
+			<li class="active">Connexion utilisateur</li>
+		</ol>
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-xs-12 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Connexion</h1>
+				</header>
+				
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							{% if user.is_authenticated %}
+								<h3 class="text-center text-muted">Vous êtes connecté. </h3>
+							{% else %}
+							{% if error %}
+
+							<p class="text-center text-muted">Utilisateur inconnu ou mauvais de mot de passe. </p>
+
+							{% endif %}
+
+
+
+
+								<h3 class="thin text-center">Se connecter</h3>
+								<p class="text-center text-muted">Si vous n'avez pas encore de compte vous pouvez vous <a href="{% url 'inscription' %}}">inscrire</a> </p>
+							<hr>
+							
+
+
+
+
+
+								<form method="post" action="{% url 'connexion' %}">
+									{% csrf_token %}
+									<div class="top-margin">
+										<label>Nom d'utilisateur <span class="text-danger">*</span></label>
+										<input type="text" class="form-control" name="username">
+									</div>
+									<div class="top-margin">
+										<label>Mot de passe <span class="text-danger">*</span></label>
+										<input type="password" class="form-control" name="password">
+									</div>
+
+								<hr>
+
+									<div class="row">
+										<div class="col-lg-8">
+											<b><a href="">Forgot password?</a></b>
+										</div>
+										<div class="col-lg-4 text-right">
+											<button class="btn btn-action" type="submit">Se connecter</button>
+										</div>
+									</div>
+
+
+								</form>
+
+ <!-- needed for JS/GoogleMaps lookup -->
+
+
+
+								{% endif %}
+
+						</div>
+					</div>
+
+				</div>
+				
+			</article>
+			<!-- /Article -->
+
+		</div>
+	</div>	<!-- /container -->
+	
+
+{% endblock %}
