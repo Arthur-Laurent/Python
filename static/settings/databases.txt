@@ -1,6 +1,6 @@
 django.db.backends.mysql
-site_python
-root
-0910An@tole
+SCHEMA
+UID
+PASSWORD
 127.0.0.1
 3306
