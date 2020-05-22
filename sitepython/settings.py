@@ -26,7 +26,7 @@ SECRET_KEY = 'h=!i+j38#@a_1pj@p7yac1ykdy_0^9-!2+e2!q-lzns&*na8+$'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-LOGIN_URL = '/connexion/'
+LOGIN_URL = 'Site/Connexion/'
 
 # Application definition
 
@@ -75,15 +75,14 @@ WSGI_APPLICATION = 'sitepython.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-file = open("./static/settings/databases.txt")
 DATABASES = {
     'default': {
-        'ENGINE': file.readline()[:-1],   # Backends disponibles : 'postgresql', 'mysql', 'sqlite3' et 'oracle'.
-        'NAME': file.readline()[:-1],             # Nom de la base de données
-        'USER': file.readline()[:-1],
-        'PASSWORD': file.readline()[:-1],
-        'HOST': file.readline()[:-1],                    # Utile si votre base de données est sur une autre machine
-        'PORT': file.readline(),                         # ... et si elle utilise un autre port que celui par défaut
+        'ENGINE': 'django.db.backends.mysql',   # Backends disponibles : 'postgresql', 'mysql', 'sqlite3' et 'oracle'.
+        'NAME': 'sitepythonp',             # Nom de la base de données
+        'USER': 'root',
+        'PASSWORD': 'raxer',
+        'HOST': '127.0.0.1',                    # Utile si votre base de données est sur une autre machine
+        'PORT': '3306',                         # ... et si elle utilise un autre port que celui par défaut
     }
 }
 

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+
+<header id="head" class="secondary"></header>
+
+<!-- container -->
+<div class="container">
+
+    <ol class="breadcrumb">
+        <li><a href="{% url 'accueil' %}">Profile</a></li>
+        <li class="active">Demandes</li>
+    </ol>
+
+    <div class="row">
+
+        <!-- Sidebar -->
+        <aside class="col-md-4 sidebar sidebar-left">
+
+            <div class="row widget">
+                <div class="col-xs-12">
+                    <h4>Onglets Demandes</h4>
+                    <p>Voici un recapitulatif des demandes en attentes.</p>
+                </div>
+            </div>
+            <div class="container">
+
+            </div>
+
+            <br>
+            <br>
+
+
+        </aside>
+        <!-- /Sidebar -->
+        <!-- Article main content -->
+        <article class="col-md-8 maincontent">
+
+
+            <div class="container -fluid">
+                <div class="container my-5">
+
+
+                    <!--Section: Content-->
+                    <section class="dark-grey-text text-center mb-5">
+
+                        <!-- Section heading -->
+                        <h3 class="font-weight-bold mb-5">Demandes en attentes</h3>
+                        <hr>
+                        {% for obj in ListePanier %}
+                         <form method="post" action="{% url 'liste' %}">
+                             {% csrf_token %}
+                        <div class="row">
+                            <div class="col-3"><h4>{{obj.user.user.first_name}}   {{obj.user.user.last_name}}</h4></div>
+                            <div class="col-8"><h4>{{obj.user.adresse}}</h4></div>
+                        </div>
+
+                        <!-- Table -->
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-responsive-md mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <strong>Produit</strong>
+                                        </th>
+                                        <th>
+                                            <strong>Quantité</strong>
+                                        </th>
+
+
+                                        <th>
+                                            <strong>Categorie</strong>
+                                        </th>
+
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    {% for panier in obj.Paniers %}
+
+
+                                    <tr>
+                                        <th scope="row">{{panier.produits.nom}}</th>
+                                        <td>{{panier.quantite}}</td>
+
+                                        <td>{{panier.produits.categorie.nom}}</td>
+                                        <input type="hidden" name="idcommande" value="{{panier.idcommande.id}}">
+                                    </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- Table -->
+                        								<div class="row">
+									<div class="col-lg-8">
+
+									</div>
+									<div class="col-lg-4 text-right">
+
+										<button class="btn btn-action" type="submit">Confirmer</button>
+									</div>
+
+								</div>
+                             </form>
+                        <hr>
+                        {% endfor %}
+
+                    </section>
+                    <!--Section: Content-->
+
+
+                </div>
+            </div>
+
+        </article>
+
+
+    </div>
+</div>    <!-- /container -->
+
+
+{% endblock %}

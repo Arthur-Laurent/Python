@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+
+<header id="head" class="secondary"></header>
+
+<!-- container -->
+<div class="container">
+
+    <ol class="breadcrumb">
+        <li><a href="{% url 'accueil' %}">Profil</a></li>
+        <li class="active">Stock</li>
+    </ol>
+
+    <div class="row">
+
+        <!-- Sidebar -->
+        <aside class="col-md-4 sidebar sidebar-left">
+
+            <div class="row widget">
+                <div class="col-xs-12">
+                    <h4>Onglets Stock</h4>
+                    <p>Voici un recapitulatif des stocks des produits.</p>
+                </div>
+            </div>
+            <div class="container">
+
+            </div>
+
+            <br>
+            <br>
+
+
+        </aside>
+        <!-- /Sidebar -->
+        <!-- Article main content -->
+        <article class="col-md-8 maincontent">
+
+
+            <div class="container -fluid">
+                <div class="container my-5">
+
+
+                    <!--Section: Content-->
+                    <section class="dark-grey-text text-center mb-5">
+
+                        <!-- Section heading -->
+                        <h3 class="font-weight-bold mb-5">Stocks</h3>
+                        <hr>
+
+                        <!-- Table -->
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-responsive-md mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <strong>Produit</strong>
+                                        </th>
+                                        <th>
+                                            <strong>Stock</strong>
+                                        </th>
+
+
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                    {% for produit in produits %}
+                                    <tr>
+                                        <th scope="row">{{produit.nom}}</th>
+                                        <td>{{produit.stock}}</td>
+
+
+                                    </tr>
+                                    {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- Table -->
+
+                        <hr>
+
+
+                    </section>
+                    <!--Section: Content-->
+
+
+                </div>
+            </div>
+
+        </article>
+
+
+    </div>
+</div>    <!-- /container -->
+
+
+{% endblock %}

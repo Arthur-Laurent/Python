@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<header id="head" class="secondary"></header>
+
+<!-- container -->
+<div class="container">
+
+    <ol class="breadcrumb">
+        <li><a href="{ url 'accueil'}">Accueil</a></li>
+        <li class="active">Statistique produit</li>
+    </ol>
+
+    <div class="row">
+
+        <!-- Article main content -->
+        <article class="col-sm-8 maincontent">
+            <header class="page-header">
+                <h1 class="page-title">Statistique</h1>
+            </header>
+
+            <img src="/static/img/popularite_des_produits.png" class="center-block" alt="erreur">
+
+
+        </article>
+        <!-- /Article -->
+
+
+    </div>
+</div>    <!-- /container -->
+
+{% endblock %}

@@ -11,6 +11,7 @@ class Utilisateur(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     telephone = models.CharField(max_length=10, null=False, blank=False)
     adresse = AddressField(on_delete=models.CASCADE, default="1")
+    adresseip = models.CharField(max_length=200,null=True,blank=True)
 
 
 class Categorie(models.Model):
@@ -25,7 +26,7 @@ class Produit(models.Model):
     date = models.DateTimeField()
     prix = models.FloatField(null=False)
     categorie = models.ForeignKey(Categorie,on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.CharField(max_length=60)
 
 class NatureDemande(models.Model):
     nature = models.CharField(max_length=30)
@@ -33,6 +34,8 @@ class NatureDemande(models.Model):
 class Commande(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     date = models.DateTimeField()
+    complete = models.BooleanField(default=False)
+    enattente = models.BooleanField(default=True)
 
 class Panier(models.Model):
         idcommande = models.ForeignKey(Commande,on_delete=models.CASCADE)

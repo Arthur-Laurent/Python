@@ -1,6 +1,0 @@
-django.db.backends.mysql
-SCHEMA
-UID
-PASSWORD
-127.0.0.1
-3306
