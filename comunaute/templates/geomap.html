@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<ol class="breadcrumb">
+    <li><a href="{% url 'accueil' %}">Accueil</a></li>
+    <li class="active">Carte</li>
+</ol>
+<div><h1>Position des utilisateurs:</h1>
+    <p>
+        La carte indique la position des utilisateurs inscrit sur la platforme.
+    </p>
+    </p>
+    Si l'utilisateur est en rouge cela signifie qu'il a effectué plus de 10 commandes. Si celui-ci est en orange, il a
+    effectué entre 2 et 10 commande.En vert moins de 2 commande.
+    </p></div>
+{{map.header.render|safe}}
+{{map.html.render|safe}}
+<script>
+  {{map.script.render | safe}}
+</script>
+
+
+{% endblock %}

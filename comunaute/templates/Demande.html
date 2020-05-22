@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+	<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="{% url 'accueil' %}">Accueil</a></li>
+			<li class="active">Demande</li>
+		</ol>
+
+		<div class="row">
+
+			<!-- Sidebar -->
+			<aside class="col-md-4 sidebar sidebar-left">
+
+				<div class="row widget">
+					<div class="col-xs-12">
+						<h4>Onglets demande</h4>
+						<p>Vous pouvez faire toute vos demandes ici.Pour toute demande particulière cliquer sur contact.</p>
+					</div>
+				</div>
+
+
+			</aside>
+			<!-- /Sidebar -->
+
+			<!-- Article main content -->
+			<article class="col-md-8 maincontent">
+
+
+				<h3>Quel est la nature de votre demande ? </h3>
+				<hr>
+				<form method="post" action="{% url 'demande' %}">
+					{% csrf_token %}
+				<select id="id_nature" name="nature_select" class="browser-default custom-select">
+					{% for nature in natures %}
+	 				 <option value={{nature.id}}>{{nature.nature}}</option>
+					{% endfor %}
+					</select>
+
+				<div class="row">
+
+					<div class="col-10"></div>
+  					<div class="col-2">
+					<button type="submit" class="btn btn-light-blue">Continuer</button>
+					</div>
+				</div>
+				</form>
+
+
+
+
+
+
+
+				<!--Light blue-->
+
+
+			</article>
+			<!-- /Article -->
+
+		</div>
+	</div>	<!-- /container -->
+
+
+{% endblock %}
